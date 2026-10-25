@@ -1,8 +1,8 @@
 import subprocess
 
 restaurantes = [{'nome':'Praça', 'categoria':'Japonesa', 'ativo':False}, 
-                {'nome':'Pizza Suprema', 'categoria':'Pizza', 'ativo':True},
-                {'nome':'Cantina', 'categoria':'Italiano', 'ativo':False}]
+                {'nome':'Pizza Suprema', 'categoria':'Italiana', 'ativo':False},
+                {'nome':'Cantina', 'categoria':'Lanches', 'ativo':False}]
 
 def exibir_nome_do_programa():
     ''' Exibe o nome estilizado do programa na tela '''
@@ -14,17 +14,30 @@ def exibir_nome_do_programa():
 ██████╔╝██║░░██║██████╦╝╚█████╔╝██║░░██║  ███████╗██╔╝╚██╗██║░░░░░██║░░██║███████╗██████╔╝██████╔╝
 ╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝░░╚═╝╚══════╝╚═════╝░╚═════╝░  
 """)
+    
+def exibir_subtitulo(texto):
+    ''' Exibe um subtítulo estilizado na tela 
+    
+    Inputs:
+    - texto: str - O texto do subtítulo
+    '''
+    subprocess.run(['clear'])
+    linha = '*' * (len(texto))
+    print(linha)
+    print(texto)
+    print(linha)
+    print()
 
 def exibir_opcoes():
     ''' Exibe as opções disponíveis no menu principal '''
     print('1. Cadastrar restaurante')
     print('2. Listar restaurantes')
-    print('3. Alternar estado do restaurante')
+    print('3. Ativar/desativar restaurantes')
     print('4. Sair\n')
 
 def finalizar_app():
     ''' Exibe mensagem de finalização do aplicativo '''
-    exibir_subtitulo('Finalizar app')
+    exibir_subtitulo('Volte sempre!')
 
 def voltar_ao_menu_principal():
     ''' Solicita uma tecla para voltar ao menu principal 
@@ -44,19 +57,6 @@ def opcao_invalida():
     print('Opção inválida!\n')
     voltar_ao_menu_principal()
 
-def exibir_subtitulo(texto):
-    ''' Exibe um subtítulo estilizado na tela 
-    
-    Inputs:
-    - texto: str - O texto do subtítulo
-    '''
-    subprocess.run(['clear'])
-    linha = '*' * (len(texto))
-    print(linha)
-    print(texto)
-    print(linha)
-    print()
-
 def cadastrar_novo_restaurante():
     ''' Essa função é responsável por cadastrar um novo restaurante 
     
@@ -69,8 +69,8 @@ def cadastrar_novo_restaurante():
 
     '''
     exibir_subtitulo('Cadastro de novos restaurantes')
-    nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
-    categoria = input(f'Digite o nome da categoria do restaurante {nome_do_restaurante}: ')
+    nome_do_restaurante = input('Informe o nome do restaurante que deseja cadastrar: ')
+    categoria = input(f'Informe a categoria do restaurante {nome_do_restaurante}: ')
     dados_do_restaurante = {'nome':nome_do_restaurante, 'categoria':categoria, 'ativo':False}
     restaurantes.append(dados_do_restaurante)
     print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!')
@@ -124,8 +124,7 @@ def escolher_opcao():
     '''
     try:
         opcao_escolhida = int(input('Escolha uma opção: '))
-        # opcao_escolhida = int(opcao_escolhida)
-
+      
         if opcao_escolhida == 1: 
             cadastrar_novo_restaurante()
         elif opcao_escolhida == 2: 
